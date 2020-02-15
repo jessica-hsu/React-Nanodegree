@@ -18,6 +18,8 @@ class SearchBooks extends React.Component {
       BooksAPI.search(query).then((results) => {
         this.determineSearchResults(results);
       });
+    } else {
+      this.setState({bookResults: []});
     }
     
   }
@@ -38,6 +40,7 @@ class SearchBooks extends React.Component {
   render() {
     const { query, bookResults } = this.state;
     
+    
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -48,12 +51,19 @@ class SearchBooks extends React.Component {
           </div>
           <div className="search-books-results">
             <ol className="books-grid">
-            {
-              bookResults.map((book) => (
-                <li key={book.id}>
-                  <Book bookImage={book.imageLinks.smallThumbnail} bookTitle={book.title} bookAuthor={book.authors}/>
-                </li>  
-              ))
+            
+           {
+              bookResults && bookResults.length > 0 ?
+                (
+                  bookResults.map((book) => (
+                    <li key={book.id}>
+                      <Book book={book}/>
+                    </li>  
+                  ))
+                ) : 
+                (
+                  <h4>No Results Found</h4>
+                )               
             }
             </ol>
           </div>

@@ -7,9 +7,7 @@ import PropTypes from 'prop-types';
 class Book extends Component {
 
     static PropTypes = {
-        bookImage: PropTypes.string.isRequired,
-        bookTitle: PropTypes.string.isRequired,
-        bookAuthor: PropTypes.array.isRequired
+        book: PropTypes.object.isRequired,
     }
 
     /**
@@ -18,29 +16,53 @@ class Book extends Component {
      * @returns {string} - return all authors in array in string form
      */
     buildAuthorString(authorArray){
-        const arrLen = authorArray.length;
-        if (arrLen === 0) {
-            return "Unknown";
-        } else if (arrLen === 1) {
-            return authorArray[0];
-        } else {
-            let allAuthors = authorArray[0];
-            for (var i = 1; i < arrLen; i++) {
-                allAuthors = allAuthors + ", " + authorArray[i];
+        if (authorArray) {
+            const arrLen = authorArray.length;
+            if (arrLen === 0) {
+                return "Unknown";
+            } else if (arrLen === 1) {
+                return authorArray[0];
+            } else {
+                let allAuthors = authorArray[0];
+                for (var i = 1; i < arrLen; i++) {
+                    allAuthors = allAuthors + ", " + authorArray[i];
+                }
+                return allAuthors;
             }
-            return allAuthors;
+        } else {
+            return "Unknown";
+        }
+    }
+
+    getBookTitleString(title) {
+        if (title) {
+            return title;
+        } else {
+            return "Unknown";
+        }
+    }
+
+    getBookImageUrl(imageObj) {
+        if (imageObj && imageObj.smallThumbnail) {
+            return imageObj.smallThumbnail;
+        } else if (imageObj && imageObj.thumbnail) {
+            return imageObj.thumbnail;
+        } else {
+            return '';
         }
     }
 
     render() {
-        const { bookImage, bookTitle, bookAuthor } = this.props;
-        const authorString = this.buildAuthorString(bookAuthor);
+        const { book } = this.props;
+        const authorString = this.buildAuthorString(book.authors);
+        const title = this.getBookTitleString(book.title);
+        const imageUrl = this.getBookImageUrl(book.imageLinks);
         return (
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${bookImage})`}}></div>
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageUrl})`}}></div>
                 </div>
-                <div className="book-title">{bookTitle}</div>
+                <div className="book-title">{title}</div>
                 <div className="book-authors">{authorString}</div>
            </div>
         );
