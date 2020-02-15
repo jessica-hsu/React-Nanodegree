@@ -2,7 +2,7 @@ import React from 'react';
 import '../css/searchBooks.css';
 import { Link } from 'react-router-dom';
 import * as BooksAPI from '../api/BooksAPI'
-
+import Book from '../components/book';
 /**
  * Search books view. Enter query in search bar to search for books
  */
@@ -36,7 +36,7 @@ class SearchBooks extends React.Component {
   }
   
   render() {
-    const { query } = this.state;
+    const { query, bookResults } = this.state;
     
     return (
       <div className="search-books">
@@ -47,7 +47,15 @@ class SearchBooks extends React.Component {
           </div>
           </div>
           <div className="search-books-results">
-            <ol className="books-grid"></ol>
+            <ol className="books-grid">
+            {
+              bookResults.map((book) => (
+                <li key={book.id}>
+                  <Book bookImage={book.imageLinks.smallThumbnail} bookTitle={book.title} bookAuthor={book.authors}/>
+                </li>  
+              ))
+            }
+            </ol>
           </div>
         </div>
       )
