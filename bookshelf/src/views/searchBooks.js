@@ -14,10 +14,25 @@ class SearchBooks extends React.Component {
 
   searchBooks(query) {
     this.setState({ query: query.trim() })
-    BooksAPI.search(query).then((books) => {
-      this.setState({bookResults: books})
-      console.log(this.state.bookResults);
-    });
+    if (query) {
+      BooksAPI.search(query).then((results) => {
+        this.determineSearchResults(results);
+      });
+    }
+    
+  }
+
+  determineSearchResults(results) {
+    if (results) {
+      if (results.error) {
+        console.log("no results");
+      } else {
+        this.setState({bookResults: results});
+        console.log(this.state.bookResults);
+      }
+    } else {
+      console.log('enter something');
+    }
   }
   
   render() {
