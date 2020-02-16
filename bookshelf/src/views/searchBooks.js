@@ -13,7 +13,7 @@ class SearchBooks extends React.Component {
   }
 
   searchBooks(query) {
-    this.setState({ query: query.trim() })
+    this.setState({ query: query })
     if (query) {
       BooksAPI.search(query).then((results) => {
         this.determineSearchResults(results);
