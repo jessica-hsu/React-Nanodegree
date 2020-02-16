@@ -27,19 +27,28 @@ class SearchBooks extends React.Component {
   determineSearchResults(results) {
     if (results) {
       if (results.error) {
+        this.setState({bookResults: []});
         console.log("no results");
       } else {
         this.setState({bookResults: results});
         console.log(this.state.bookResults);
       }
     } else {
+      this.setState({bookResults: []});
       console.log('enter something');
     }
   }
   
   render() {
     const { query, bookResults } = this.state;
-    
+    let displayResultsUI;
+    if (bookResults && bookResults.length > 0 && query) {
+      displayResultsUI = bookResults.map((book) => (
+        <li key={book.id}>
+          <Book book={book}/>
+        </li>  
+      ));
+    }
     
     return (
       <div className="search-books">
@@ -51,20 +60,7 @@ class SearchBooks extends React.Component {
           </div>
           <div className="search-books-results">
             <ol className="books-grid">
-            
-           {
-              bookResults && bookResults.length > 0 ?
-                (
-                  bookResults.map((book) => (
-                    <li key={book.id}>
-                      <Book book={book}/>
-                    </li>  
-                  ))
-                ) : 
-                (
-                  <h4>No Results Found</h4>
-                )               
-            }
+              {displayResultsUI}
             </ol>
           </div>
         </div>
