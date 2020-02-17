@@ -3,7 +3,6 @@ import * as BooksAPI from '../api/BooksAPI'
 import '../css/homePage.css';
 import { Link } from 'react-router-dom';
 import BookShelf from '../components/bookShelf';
-
 /**
  * Home page view to show currently reading shelf, want to read shelf, and already read shelf
  */
@@ -57,7 +56,7 @@ class HomePage extends React.Component {
               </div>
             </div>
             <div className="open-search">
-            <Link to='/search'>Add a book</Link>
+              <Link to='/search'>Add a book</Link>
             </div>
           </div>
       </div>
