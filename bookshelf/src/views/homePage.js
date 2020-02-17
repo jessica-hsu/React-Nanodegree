@@ -41,6 +41,20 @@ class HomePage extends React.Component {
 
   }
 
+  moveShelf(newShelfType) {
+    const fromShelf = this.props.book.shelf ? this.props.book.shelf : 'none';
+    const toShelf = newShelfType;
+    console.log('transfer from ' + fromShelf + ' to ' + toShelf);
+    /*
+      none to currentlyReading, wantToRead, read
+      currentlyReading to none, wantToRead, read
+      wantToRead to none, currentlyReading, read
+      read to none, currentlyReading, wantToRead
+
+      total 12 conditions
+    */
+  }
+
   render() {
     return (
       <div className="app">

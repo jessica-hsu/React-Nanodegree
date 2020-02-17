@@ -53,8 +53,9 @@ class Book extends Component {
     }
 
     moveShelf(newShelfType) {
-        console.log('old', this.props.book.shelf);
-        console.log('new', newShelfType);
+        const fromShelf = this.props.book.shelf ? this.props.book.shelf : 'none';
+        const toShelf = newShelfType;
+        console.log('transfer from ' + fromShelf + ' to ' + toShelf);
   
     }
 
