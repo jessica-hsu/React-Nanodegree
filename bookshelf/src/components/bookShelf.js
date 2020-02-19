@@ -10,6 +10,7 @@ class BookShelf extends Component {
         books: PropTypes.array.isRequired,
         shelfType: PropTypes.string.isRequired,
     }
+    
 
     render() {
         const { books, shelfType, onShelfChange} = this.props;

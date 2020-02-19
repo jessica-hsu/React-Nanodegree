@@ -52,10 +52,6 @@ class Book extends Component {
         }
     }
 
-    handleMoveShelf = (e, book) => {
-
-    }
-
     render() {
         const { book, onShelfChange} = this.props;
         const authorString = this.buildAuthorString(book.authors);

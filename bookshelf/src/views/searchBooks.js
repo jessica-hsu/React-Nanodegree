@@ -7,6 +7,13 @@ import Book from '../components/book';
  * Search books view. Enter query in search bar to search for books
  */
 class SearchBooks extends React.Component {
+
+  constructor(props) {
+    super(props);
+    // bind so that can successfully pass to child component
+    this.moveShelfHandler = this.moveShelf.bind(this);
+  }
+
   state = {
     query: '',
     bookResults: []
@@ -38,6 +45,15 @@ class SearchBooks extends React.Component {
       console.log('enter something');
     }
   }
+
+  moveShelf(newShelfType, book) {
+    const fromShelf = book.shelf ? book.shelf : 'none';
+    const toShelf = newShelfType;
+    console.log('transfer from ' + fromShelf + ' to ' + toShelf);
+    BooksAPI.update(book, newShelfType).then((response) => {
+      console.log(response);
+    });
+  }
   
   render() {
     const { query, bookResults } = this.state;
@@ -45,7 +61,7 @@ class SearchBooks extends React.Component {
     if (bookResults && bookResults.length > 0 && query) {
       displayResultsUI = bookResults.map((book) => (
         <li key={book.id}>
-          <Book book={book} onShelfChange={this.props.onShelfChange}/>
+          <Book book={book} onShelfChange={this.moveShelfHandler}/>
         </li>  
       ));
     }
