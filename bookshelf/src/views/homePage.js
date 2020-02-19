@@ -10,6 +10,7 @@ class HomePage extends React.Component {
 
   constructor(props) {
     super(props);
+    // bind so that can successfully pass to child component
     this.moveShelfHandler = this.moveShelf.bind(this);
   }
   state = {
@@ -56,9 +57,9 @@ class HomePage extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <BookShelf books={this.state.currentlyReadingBooks} shelfType={'Currently Reading'} onShelfChange={this.moveShelfHandler} currentlyReading={this.state.currentlyReadingBooks} wantToRead={this.state.wantToReadBooks} read={this.state.readBooks}/>
-                <BookShelf books={this.state.wantToReadBooks} shelfType={'Want to Read'}/>
-                <BookShelf books={this.state.readBooks} shelfType={'Read'}/>    
+                <BookShelf books={this.state.currentlyReadingBooks} shelfType={'Currently Reading'} onShelfChange={this.moveShelfHandler}/>
+                <BookShelf books={this.state.wantToReadBooks} shelfType={'Want to Read'} onShelfChange={this.moveShelfHandler}/>
+                <BookShelf books={this.state.readBooks} shelfType={'Read'} onShelfChange={this.moveShelfHandler}/>    
               </div>
             </div>
             <div className="open-search">
