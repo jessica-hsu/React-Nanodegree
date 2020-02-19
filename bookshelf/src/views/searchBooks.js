@@ -45,7 +45,7 @@ class SearchBooks extends React.Component {
     if (bookResults && bookResults.length > 0 && query) {
       displayResultsUI = bookResults.map((book) => (
         <li key={book.id}>
-          <Book book={book}/>
+          <Book book={book} onShelfChange={this.props.onShelfChange}/>
         </li>  
       ));
     }

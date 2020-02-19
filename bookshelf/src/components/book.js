@@ -52,15 +52,12 @@ class Book extends Component {
         }
     }
 
-    moveShelf(newShelfType) {
-        const fromShelf = this.props.book.shelf ? this.props.book.shelf : 'none';
-        const toShelf = newShelfType;
-        console.log('transfer from ' + fromShelf + ' to ' + toShelf);
-  
+    handleMoveShelf = (e, book) => {
+
     }
 
     render() {
-        const { book } = this.props;
+        const { book, onShelfChange} = this.props;
         const authorString = this.buildAuthorString(book.authors);
         const title = this.getBookTitleString(book.title);
         const imageUrl = this.getBookImageUrl(book.imageLinks);
@@ -69,7 +66,7 @@ class Book extends Component {
                 <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageUrl})`}}></div>
                     <div className="book-shelf-changer">
-                        <select defaultValue={book.shelf ? book.shelf : 'none'} onChange={(event) => this.moveShelf(event.target.value)}>
+                        <select defaultValue={book.shelf ? book.shelf : 'none'} onChange={(event) => onShelfChange(event.target.value, book)}>
                             <option value="move" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
