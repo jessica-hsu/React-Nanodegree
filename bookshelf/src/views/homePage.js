@@ -13,6 +13,7 @@ class HomePage extends React.Component {
     // bind so that can successfully pass to child component
     this.moveShelfHandler = this.moveShelf.bind(this);
   }
+  
   state = {
     allBooks: [],
     currentlyReadingBooks: [],
@@ -45,10 +46,30 @@ class HomePage extends React.Component {
     console.log('transfer from ' + fromShelf + ' to ' + toShelf);
     BooksAPI.update(book, newShelfType).then((response) => {
       console.log(response);
+      this.refreshAllShelves();
+    });
+  }
+
+  refreshAllShelves() {
+    console.log('refreshing');
+    BooksAPI.getAll().then((books) => {
+      this.setState({allBooks: books})
+      console.log(this.state.allBooks);
+
+      // filter by shelf
+      this.setState((state) => ({
+        currentlyReadingBooks: state.allBooks.filter((b) => b.shelf === 'currentlyReading'),
+        wantToReadBooks: state.allBooks.filter((b) => b.shelf === 'wantToRead'),
+        readBooks: state.allBooks.filter((b) => b.shelf === 'read')
+      }))
+      console.log('currentlyReading', this.state.currentlyReadingBooks);
+      console.log('wantToReadBooks', this.state.wantToReadBooks);
+      console.log('readBooks', this.state.readBooks);
     });
   }
 
   render() {
+    const {currentlyReadingBooks, wantToReadBooks, readBooks} = this.state;
     return (
       <div className="app">
           <div className="list-books">
@@ -57,9 +78,9 @@ class HomePage extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <BookShelf books={this.state.currentlyReadingBooks} shelfType={'Currently Reading'} onShelfChange={this.moveShelfHandler}/>
-                <BookShelf books={this.state.wantToReadBooks} shelfType={'Want to Read'} onShelfChange={this.moveShelfHandler}/>
-                <BookShelf books={this.state.readBooks} shelfType={'Read'} onShelfChange={this.moveShelfHandler}/>    
+                <BookShelf books={currentlyReadingBooks} shelfType={'Currently Reading'} onShelfChange={this.moveShelfHandler}/>
+                <BookShelf books={wantToReadBooks} shelfType={'Want to Read'} onShelfChange={this.moveShelfHandler}/>
+                <BookShelf books={readBooks} shelfType={'Read'} onShelfChange={this.moveShelfHandler}/>    
               </div>
             </div>
             <div className="open-search">
