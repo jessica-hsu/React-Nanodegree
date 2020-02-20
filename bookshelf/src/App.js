@@ -3,6 +3,7 @@ import HomePage from './views/homePage';
 import SearchBooks from './views/searchBooks';
 import { Route } from 'react-router-dom';
 import * as BooksAPI from './api/BooksAPI'
+import './css/styles.css';
 
 class BooksApp extends React.Component { 
 

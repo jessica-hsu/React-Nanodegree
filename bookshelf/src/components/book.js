@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 
 /**
  * Component for each book. Includes book cover, title, author

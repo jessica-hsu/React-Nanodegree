@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/searchBooks.css';
 import { Link } from 'react-router-dom';
 import * as BooksAPI from '../api/BooksAPI'
 import Book from '../components/book';

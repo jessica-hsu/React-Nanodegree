@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/homePage.css';
 import { Link } from 'react-router-dom';
 import BookShelf from '../components/bookShelf';
 
