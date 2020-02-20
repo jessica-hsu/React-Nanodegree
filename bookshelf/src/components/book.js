@@ -52,11 +52,24 @@ class Book extends Component {
         }
     }
 
-    figureOutIfAlreadyOnShelf(book) {
+    figureOutIfAlreadyOnShelf(book, existingBooks) {
+        
+        console.log(book); 
+        console.log(existingBooks);
         if (book.shelf) {
             return book.shelf;
         } else {
-
+            let shelf = 'none';
+            if (existingBooks) {
+                console.log("here");
+                for (var i=0; i < existingBooks.length; i++) {
+                    if (existingBooks[i].id === book.id) {
+                        shelf = existingBooks[i].shelf;
+                        break;
+                    }
+                }
+            }
+            return shelf;
         }
     }
 
@@ -65,7 +78,7 @@ class Book extends Component {
         const authorString = this.buildAuthorString(book.authors);
         const title = this.getBookTitleString(book.title);
         const imageUrl = this.getBookImageUrl(book.imageLinks);
-        const bookShelf = this.figureOutIfAlreadyOnShelf(book);
+        const bookShelf = this.figureOutIfAlreadyOnShelf(book, existingBooks);
         return (
             <div className="book">
                 <div className="book-top">
