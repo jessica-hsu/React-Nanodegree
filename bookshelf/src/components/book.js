@@ -8,6 +8,8 @@ class Book extends Component {
 
     static PropTypes = {
         book: PropTypes.object.isRequired,
+        onShelfChange: PropTypes.func.isRequired,
+        existingBooks: PropTypes.array
     }
 
     /**
