@@ -8,7 +8,6 @@ class BooksApp extends React.Component {
 
   constructor(props) {
     super(props);
-    
     // bind so that can successfully pass to child component
     this.moveShelfHandler = this.moveShelf.bind(this);
   }
@@ -24,6 +23,9 @@ class BooksApp extends React.Component {
     this.fetchData();
   }
 
+  /**
+   * @description - call getAll from BooksAPI and sort into the three shelves
+   */
   fetchData() {
     return BooksAPI.getAll().then((books) => {
       this.setState({allBooks: books})
@@ -36,6 +38,11 @@ class BooksApp extends React.Component {
     });
   }
 
+  /**
+   * @description - call update from BooksAPI when moving shelf
+   * @param {string} newShelfType - new shelf type
+   * @param {object} book - book object
+   */
   moveShelf(newShelfType, book) {
     BooksAPI.update(book, newShelfType).then((response) => {
       this.fetchData();

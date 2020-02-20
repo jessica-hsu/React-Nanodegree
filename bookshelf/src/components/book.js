@@ -34,6 +34,10 @@ class Book extends Component {
         }
     }
 
+    /**
+     * @description - check if title exists and if not, return Unknown
+     * @param {string} title - title of book
+     */
     getBookTitleString(title) {
         if (title) {
             return title;
@@ -42,6 +46,10 @@ class Book extends Component {
         }
     }
 
+    /**
+     * @description - set thumbnail url
+     * @param {object} imageObj - object holding image information of book
+     */
     getBookImageUrl(imageObj) {
         if (imageObj && imageObj.smallThumbnail) {
             return imageObj.smallThumbnail;
@@ -52,6 +60,11 @@ class Book extends Component {
         }
     }
 
+    /**
+     * @description - determine if book is already on a shelf
+     * @param {object} book - book object
+     * @param {array} existingBooks - array of book objects on shelves
+     */
     figureOutIfAlreadyOnShelf(book, existingBooks) {
         if (book.shelf) {
             return book.shelf;

@@ -13,6 +13,10 @@ class SearchBooks extends React.Component {
     bookResults: []
   }
 
+  /**
+   * @description - call search from BooksAPI with given query
+   * @param {string} query - search query
+   */
   searchBooks(query) {
     this.setState({ query: query })
     if (query) {
@@ -25,6 +29,10 @@ class SearchBooks extends React.Component {
     
   }
 
+  /**
+   * @description - use results from search API to see if need to show results in user interface
+   * @param {array} results - array of book objects
+   */
   determineSearchResults(results) {
     if (results) {
       if (results.error) {
