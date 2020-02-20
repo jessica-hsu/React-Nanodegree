@@ -29,14 +29,11 @@ class SearchBooks extends React.Component {
     if (results) {
       if (results.error) {
         this.setState({bookResults: []});
-        console.log("no results");
       } else {
         this.setState({bookResults: results});
-        console.log(this.state.bookResults);
       }
     } else {
       this.setState({bookResults: []});
-      console.log('enter something');
     }
   }
 

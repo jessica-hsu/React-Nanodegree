@@ -53,15 +53,11 @@ class Book extends Component {
     }
 
     figureOutIfAlreadyOnShelf(book, existingBooks) {
-        
-        console.log(book); 
-        console.log(existingBooks);
         if (book.shelf) {
             return book.shelf;
         } else {
             let shelf = 'none';
             if (existingBooks) {
-                console.log("here");
                 for (var i=0; i < existingBooks.length; i++) {
                     if (existingBooks[i].id === book.id) {
                         shelf = existingBooks[i].shelf;
