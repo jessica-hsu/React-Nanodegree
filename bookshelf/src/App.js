@@ -49,6 +49,7 @@ class BooksApp extends React.Component {
     console.log('transfer from ' + fromShelf + ' to ' + toShelf);
     BooksAPI.update(book, newShelfType).then((response) => {
       console.log(response);
+      console.log(window.location.pathname)
       this.fetchData();
     });
   }
@@ -63,7 +64,7 @@ class BooksApp extends React.Component {
         
         {/* route to search page */}
         <Route path='/search' render={({ history }) => (
-          <SearchBooks shelves={this.state}/>
+          <SearchBooks shelves={this.state} onShelfChange={this.moveShelfHandler}/>
         )} />
       </div>
     )

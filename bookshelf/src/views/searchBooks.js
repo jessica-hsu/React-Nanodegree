@@ -57,13 +57,13 @@ class SearchBooks extends React.Component {
   
   render() {
     const { query, bookResults } = this.state;
-    const { shelves } = this.props;
-    
+    const { shelves, onShelfChange } = this.props;
+
     let displayResultsUI;
     if (bookResults && bookResults.length > 0 && query) {
       displayResultsUI = bookResults.map((book) => (
         <li key={book.id}>
-          <Book book={book} onShelfChange={this.moveShelfHandler}/>
+          <Book book={book} onShelfChange={onShelfChange}/>
         </li>  
       ));
     }
