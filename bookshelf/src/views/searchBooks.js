@@ -57,6 +57,8 @@ class SearchBooks extends React.Component {
   
   render() {
     const { query, bookResults } = this.state;
+    const { shelves } = this.props;
+    
     let displayResultsUI;
     if (bookResults && bookResults.length > 0 && query) {
       displayResultsUI = bookResults.map((book) => (
