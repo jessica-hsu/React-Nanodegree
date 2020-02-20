@@ -52,17 +52,26 @@ class Book extends Component {
         }
     }
 
+    figureOutIfAlreadyOnShelf(book) {
+        if (book.shelf) {
+            return book.shelf;
+        } else {
+
+        }
+    }
+
     render() {
-        const { book, onShelfChange} = this.props;
+        const { book, onShelfChange, existingBooks} = this.props;
         const authorString = this.buildAuthorString(book.authors);
         const title = this.getBookTitleString(book.title);
         const imageUrl = this.getBookImageUrl(book.imageLinks);
+        const bookShelf = this.figureOutIfAlreadyOnShelf(book);
         return (
             <div className="book">
                 <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageUrl})`}}></div>
                     <div className="book-shelf-changer">
-                        <select defaultValue={book.shelf ? book.shelf : 'none'} onChange={(event) => onShelfChange(event.target.value, book)}>
+                        <select defaultValue={bookShelf} onChange={(event) => onShelfChange(event.target.value, book)}>
                             <option value="move" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
