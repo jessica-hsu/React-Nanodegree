@@ -3,16 +3,11 @@ import '../css/searchBooks.css';
 import { Link } from 'react-router-dom';
 import * as BooksAPI from '../api/BooksAPI'
 import Book from '../components/book';
-import PropTypes from 'prop-types';
 
 /**
  * Search books view. Enter query in search bar to search for books
  */
 class SearchBooks extends React.Component {
-  static PropTypes = {
-    allBooks: PropTypes.array.isRequired,
-    onShelfChange: PropTypes.func.isRequired
-  }
 
   state = {
     query: '',

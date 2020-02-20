@@ -6,12 +6,6 @@ import PropTypes from 'prop-types';
  */
 class Book extends Component {
 
-    static PropTypes = {
-        book: PropTypes.object.isRequired,
-        onShelfChange: PropTypes.func.isRequired,
-        existingBooks: PropTypes.array
-    }
-
     /**
      * @description - take array of authors and concatenate each into string form
      * @param {string[]} authorArray - array of authors

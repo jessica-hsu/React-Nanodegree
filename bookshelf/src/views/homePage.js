@@ -2,17 +2,11 @@ import React from 'react';
 import '../css/homePage.css';
 import { Link } from 'react-router-dom';
 import BookShelf from '../components/bookShelf';
-import PropTypes from 'prop-types';
 
 /**
  * Home page view to show currently reading shelf, want to read shelf, and already read shelf
  */
 class HomePage extends React.Component {
-  static PropTypes = {
-    shelves: PropTypes.object.isRequired,
-    onShelfChange: PropTypes.func.isRequired
-  }
-
   render() {
     const {shelves, onShelfChange} = this.props;
     return (
