@@ -3,7 +3,7 @@
      console.log('The action: ', action);
      const returnValue = next(action);
      console.log('the next state: ', store.getState());
-     console.endGroud();
+     console.groupEnd();
      return returnValue;
  }
 
