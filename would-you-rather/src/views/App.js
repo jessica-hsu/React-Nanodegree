@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {handleInitialData} from '../actions/shared';
 import './App.css';
 
-import HomePage from './HomePage';
 
+import HomePage from './HomePage';
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData());
@@ -12,7 +12,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        Starter Code
         {this.props.loading === true
           ? null
           : <HomePage/>}
