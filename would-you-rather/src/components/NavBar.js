@@ -10,9 +10,9 @@ class NavBar extends Component {
         <Nav defaultActiveKey="/home" className="flex-column">
             <Nav>Hello Tyler</Nav>
             <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/add">Link</Nav.Link>
-            <Nav.Link href="/leadership">Link</Nav.Link>
-            <Nav.Link href="/leadership">Logout</Nav.Link>
+            <Nav.Link href="/add">Add Question</Nav.Link>
+            <Nav.Link href="/leadership">Leadership Board</Nav.Link>
+            <Nav.Link href="/">Logout</Nav.Link>
         </Nav>
     )
   }

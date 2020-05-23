@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import Question from '../components/Question'
 import NavBar from '../components/NavBar';
 import Title from '../components/Title';
+import Button from '../components/Button';
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -16,11 +18,14 @@ class HomePage extends Component {
         </Row>
         <Row>
           <Col sm={2}><NavBar/></Col>
-          <Col sm={10}><ul className='dashboard-list'>
-          {this.props.questionsIds.map((id) => (
-              <Question id={id}/>
-          ))}
-        </ul></Col>
+          <Col sm={10}>
+            
+            <ul className='dashboard-list'>
+              {this.props.questionsIds.map((id) => (
+                  <Question id={id}/>
+              ))}
+            </ul>
+          </Col>
         </Row>
       </Container>
     )
