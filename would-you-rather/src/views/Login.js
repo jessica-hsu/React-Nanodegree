@@ -36,9 +36,7 @@ class Login extends Component {
 }
 
 function mapStateToProps ({authedUser, users, questions}) {
-    Object.keys(users).map((user) => (
-        console.log(users[user])
-    ))
+   
     return {
         users
     }
