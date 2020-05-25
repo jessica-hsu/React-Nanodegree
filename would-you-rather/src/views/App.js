@@ -6,6 +6,7 @@ import './App.css';
 
 import HomePage from './HomePage';
 import Login from './Login';
+import AddQuestion from './AddQuestion';
 
 class App extends Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ class App extends Component {
       <div>
         {this.props.loading === true
           ? null
-          : <Login/>}
+          : <AddQuestion/>}
       </div>
     );
   }
