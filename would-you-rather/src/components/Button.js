@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 class MyButtons extends Component {
   render() {
 
-    const {buttonType, toggleQuestionList} = this.props;
+    const {buttonType, toggleQuestionList, text} = this.props;
 
     console.log(buttonType);
 
@@ -26,7 +26,7 @@ class MyButtons extends Component {
         )
     } else {
         return (
-            <Button variant="primary">Submit</Button>
+            <Button variant="primary">{text}</Button>
         )
     }
     

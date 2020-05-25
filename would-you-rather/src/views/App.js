@@ -5,6 +5,8 @@ import './App.css';
 
 
 import HomePage from './HomePage';
+import Login from './Login';
+
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData());
@@ -14,7 +16,7 @@ class App extends Component {
       <div>
         {this.props.loading === true
           ? null
-          : <HomePage/>}
+          : <Login/>}
       </div>
     );
   }
