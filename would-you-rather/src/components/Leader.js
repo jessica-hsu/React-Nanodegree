@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Card from 'react-bootstrap/Card';
-import Image from 'react-bootstrap/Image';
 
 class Leader extends Component {
   render() {
@@ -9,7 +8,7 @@ class Leader extends Component {
    
     return (
         <div style={{ width: '15rem' }}>
-        <Image src={user.image} rounded fluid/>
+        <Card.Img src={user.image}/>
         <Card>
             <Card.Body>
                 <Card.Title>{user.name}</Card.Title>
