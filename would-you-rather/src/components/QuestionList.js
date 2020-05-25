@@ -6,7 +6,7 @@ class QuestionList extends Component {
   render() {
     return (
       <div>
-          {this.props.answeredIds.map((id) => (
+          {this.props.questionsIds.map((id) => (
             <div key={id} style={{margin: "1rem"}}>
               <Question id={id}/>
             </div>
@@ -16,12 +16,12 @@ class QuestionList extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser, questions }) {
-  console.log(questions); console.log(authedUser);
+function mapStateToProps ({ authedUser, questions }, {currentList}) {
+  console.log('currentList', currentList);
   const answered = [];
   const unanswered = [];
+  // sort into answered and unanswered
   Object.keys(questions).map((id) => {
-    console.log(id);
     const votes1 = questions[id].optionOne.votes;
     const votes2 = questions[id].optionTwo.votes;
     if (votes1.indexOf(authedUser) > -1 || votes2.indexOf(authedUser) > -1) {
@@ -31,14 +31,15 @@ function mapStateToProps ({ authedUser, questions }) {
     }
   });
 
-  console.log(answered);
-  console.log(unanswered);
+  // determine which list to display when user toggle between answered and unanswered
+  let currentIds = answered;
+  if (currentList === 'homepage-unanswered') {
+    currentIds = unanswered;
+  }
 
+  console.log(currentIds);
   return {
-    unansweredIds: unanswered,
-    answeredIds: answered,
-    questionsIds: Object.keys(questions)
-      .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+    questionsIds: currentIds
   }
 }
 

@@ -15,11 +15,19 @@ class HomePage extends Component {
     this.toggleQuestionList = this.toggleQuestionList.bind(this);
   }
 
+  state = {
+    btnType:'homepage-default'
+  }
+
+
   toggleQuestionList(keyword) {
     console.log(keyword);
+    this.setState({btnType: keyword});
+    console.log('keyword is now: ', this.state.btnType);
   }
 
   render() {
+    console.log('KEYWORD: ', this.state.btnType);
     return (
       
       <Container fluid>
@@ -29,8 +37,8 @@ class HomePage extends Component {
         <Row>
           <Col sm={2}><NavBar/></Col>
           <Col sm={10}>
-            <MyButtons buttonType={'homepage-default'} toggleQuestionList={this.toggleQuestionList}/>
-            <QuestionList questionsIds={this.props.questionsIds}/>
+          <MyButtons buttonType={this.state.btnType} toggleQuestionList={this.toggleQuestionList}/>
+            <QuestionList questionsIds={this.props.questionsIds} currentList={this.state.btnType}/>
           </Col>
         </Row>
       </Container>
