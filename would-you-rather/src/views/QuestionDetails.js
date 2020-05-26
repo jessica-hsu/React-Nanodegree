@@ -20,7 +20,7 @@ class QuestionDetails extends Component {
           <Col sm={10}>
             <h3>Question Details</h3>
             <hr/>
-            <Details questionId={answered}/>
+            <Details questionId={unanswered}/>
           </Col>
         </Row>
       </Container>

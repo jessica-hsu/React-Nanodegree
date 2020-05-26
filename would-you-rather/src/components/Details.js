@@ -12,27 +12,46 @@ class Details extends Component {
     const {question, authorInfo} = this.props;
    
     return (
-        /*<div style={{ width: '18rem' }}>
+        <div style={{ width: '18rem' }}>
             <Card>
                 <Form>
                 <Card.Header>{authorInfo.name} asks ...</Card.Header>
                 <Card.Img src={authorInfo.avatarURL}/>
                 <Card.Body>
                     <Card.Title>Would You Rather ... </Card.Title>
-                        <fieldset>
+                    {
+                        question.status === "unanswered" ?
+                    <div>
                         <Form.Group as={Row}>
-                            <Form.Check custom type="radio" id="optionOne" name="options" label={questionInfo.optionOne.text}/>
+                            <Form.Check custom type="radio" id="optionOne" name="options" label={question.optionOneText}/>
                         </Form.Group>
                         <Form.Group as={Row}>
-                            <Form.Check custom type="radio" id="optionTwo" name="options" label={questionInfo.optionTwo.text}/>
+                            <Form.Check custom type="radio" id="optionTwo" name="options" label={question.optionTwoText}/>
                         </Form.Group>
-                        </fieldset>
+                    </div> : 
+                    <div>
+                        <div style={{padding: "1rem", backgroundColor: question.votedFor === 'optionOne' ? "#99d6f2" : "transparent"}}>
+                            <Card.Text>Option 1: {question.optionOneText}</Card.Text>
+                            <Card.Subtitle className="mb-2 text-muted">{question.optionOneTotal} out of votes {question.totalVotes}</Card.Subtitle>
+                            <Card.Subtitle className="mb-2 text-muted">Percent: {question.optionOnePercent}%</Card.Subtitle>
+                        </div>
+                        <div style={{padding: "1rem", backgroundColor: question.votedFor === 'optionTwo' ? "#99d6f2" : "transparent"}}>
+                            <Card.Text>Option 2: {question.optionTwoText}</Card.Text>
+                            <Card.Subtitle className="mb-2 text-muted">{question.optionTwoTotal} out of votes {question.totalVotes}</Card.Subtitle>
+                            <Card.Subtitle className="mb-2 text-muted">Percent: {question.optionTwoPercent}%</Card.Subtitle>
+                        </div>
+                    </div>
+                    }
+                    
                 </Card.Body>
-                <Card.Footer><MyButtons buttonType={'submit'} text={'Submit'}/></Card.Footer>
+                {
+                  question.status === 'unanswered' ?  <Card.Footer><MyButtons buttonType={'submit'} text={'Submit'}/></Card.Footer> : ''
+                }
                 </Form>
             </Card>
-        </div>*/
-        <div style={{ width: '18rem' }}>
+        </div>
+
+        /*<div style={{ width: '18rem' }}>
             <Card>
                 <Card.Header>{authorInfo.name} asks ...</Card.Header>
                 <Card.Img src={authorInfo.avatarURL}/>
@@ -50,7 +69,7 @@ class Details extends Component {
                     </div>
                 </Card.Body>
             </Card>
-        </div>
+        </div>*/
     )
   }
 }
