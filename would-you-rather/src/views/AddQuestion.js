@@ -10,6 +10,17 @@ import Col from 'react-bootstrap/Col';
 
 class AddQuestion extends Component {
 
+  constructor(props) {
+    super(props);
+    this.addQuestion = this.addQuestion.bind(this);
+  }
+
+  addQuestion(keyword, option1, option2) {
+    console.log(keyword);
+    console.log(option1);
+    console.log(option2);
+  }
+
   render() {
     return (
       <Container fluid>
@@ -22,7 +33,7 @@ class AddQuestion extends Component {
             <h3>Add New Question</h3>
             <hr/>
             <h5>Would You Rather ... </h5>
-            <AddForm/>
+            <AddForm submitQuestion={this.addQuestion}/>
           </Col>
         </Row>
       </Container>

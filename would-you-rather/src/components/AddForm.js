@@ -7,6 +7,25 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 class AddForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleOnChangeOne = this.handleOnChangeOne.bind(this);
+    this.handleOnChangeTwo = this.handleOnChangeTwo.bind(this);
+  }
+
+  state = {
+    optionOneValue: "",
+    optionTwoValue: ""
+  }
+
+  handleOnChangeOne(event) {
+    this.setState({optionOneValue: event.target.value});
+  }
+
+  handleOnChangeTwo(event) {
+    this.setState({optionTwoValue: event.target.value});
+  }
 
   render() {
     return (
@@ -16,7 +35,7 @@ class AddForm extends Component {
                 Option 1
                 </Form.Label>
                 <Col sm="8">
-                <Form.Control type="text" placeholder="Option 1 Text"/>
+                <Form.Control type="text" value={this.state.optionOneValue} placeholder="Option 1 Text" onChange={this.handleOnChangeOne}/>
                 </Col>
             </Form.Group>
 
@@ -25,12 +44,12 @@ class AddForm extends Component {
                 Option 2
                 </Form.Label>
                 <Col sm="8">
-                <Form.Control type="text" placeholder="Option 2 Text"/>
+                <Form.Control type="text" value={this.state.optionTwoValue} placeholder="Option 2 Text" onChange={this.handleOnChangeTwo}/>
                 </Col>
             </Form.Group>
 
             <div style={{marginTop: "1rem"}}>
-                <MyButtons buttonType={'submit'} text={'Submit'}/>
+                <MyButtons buttonType={"submit"} text={"Submit"} submitQuestion={this.props.submitQuestion} option1={this.state.optionOneValue} option2={this.state.optionTwoValue}/>
             </div>
         </Form>
     )

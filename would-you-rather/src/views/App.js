@@ -19,7 +19,7 @@ class App extends Component {
       <div>
         {this.props.loading === true
           ? null
-          : <QuestionDetails/>}
+          : <AddQuestion/>}
       </div>
     );
   }
