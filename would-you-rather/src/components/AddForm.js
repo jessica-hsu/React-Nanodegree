@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import MyButtons from '../components/Button'
-
+import {handleAddQuestion} from '../actions/questions';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -12,6 +12,8 @@ class AddForm extends Component {
 
     this.handleOnChangeOne = this.handleOnChangeOne.bind(this);
     this.handleOnChangeTwo = this.handleOnChangeTwo.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   state = {
@@ -27,9 +29,22 @@ class AddForm extends Component {
     this.setState({optionTwoValue: event.target.value});
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    const { optionOneValue, optionTwoValue } = this.state;
+    console.log(optionOneValue); console.log(optionTwoValue);
+    this.props.dispatch(handleAddQuestion(optionOneValue, optionTwoValue));
+
+    this.setState({
+      optionOneValue: "",
+      optionTwoValue: ""
+    });
+    
+  }
+
   render() {
     return (
-        <Form>
+        <Form onSubmit={this.handleSubmit}>
             <Form.Group as={Row} controlId="optionOne">
                 <Form.Label column sm="2">
                 Option 1
@@ -49,18 +64,12 @@ class AddForm extends Component {
             </Form.Group>
 
             <div style={{marginTop: "1rem"}}>
-                <MyButtons buttonType={"submit"} text={"Submit"} submitQuestion={this.props.submitQuestion} option1={this.state.optionOneValue} option2={this.state.optionTwoValue}/>
+                <MyButtons buttonType={"submit"} text={"Submit"}/>
             </div>
         </Form>
     )
   }
 }
 
-function mapStateToProps ({questions }) {
-  return {
-    questionsIds: Object.keys(questions)
-      .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
-  }
-}
 
-export default connect(mapStateToProps)(AddForm) 
+export default connect()(AddForm) 

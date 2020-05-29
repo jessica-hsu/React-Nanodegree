@@ -10,17 +10,6 @@ import Col from 'react-bootstrap/Col';
 
 class AddQuestion extends Component {
 
-  constructor(props) {
-    super(props);
-    this.addQuestion = this.addQuestion.bind(this);
-  }
-
-  addQuestion(keyword, option1, option2) {
-    console.log(keyword);
-    console.log(option1);
-    console.log(option2);
-  }
-
   render() {
     return (
       <Container fluid>
@@ -33,7 +22,7 @@ class AddQuestion extends Component {
             <h3>Add New Question</h3>
             <hr/>
             <h5>Would You Rather ... </h5>
-            <AddForm submitQuestion={this.addQuestion}/>
+            <AddForm/>
           </Col>
         </Row>
       </Container>
@@ -41,11 +30,4 @@ class AddQuestion extends Component {
   }
 }
 
-function mapStateToProps ({questions }) {
-  return {
-    questionsIds: Object.keys(questions)
-      .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
-  }
-}
-
-export default connect(mapStateToProps)(AddQuestion) 
+export default connect()(AddQuestion) 

@@ -24,9 +24,13 @@ class MyButtons extends Component {
                 <Button variant="primary" onClick={toggleQuestionList.bind(this,'homepage-unanswered')}>Unanswered</Button>
             </ButtonGroup>
         )
+    } else  if (buttonType === 'submit') {
+        return (
+            <Button variant="primary" type="submit">{text}</Button>
+        )
     } else {
         return (
-            <Button variant="primary" onClick={submitQuestion.bind(this,'submit', option1, option2)}>{text}</Button>
+            <Button variant="primary">{text}</Button>
         )
     }
     

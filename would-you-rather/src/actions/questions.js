@@ -1,6 +1,29 @@
 // action creator for getting questions
+import { saveQuestion, saveQuestionAnswer} from '../utils/api';
 
 export const GET_QUESTIONS = 'GET_QUESTIONS';
+export const ADD_QUESTION = 'ADD_QUESTION';
+export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER';
+
+function addQuestion(question) {
+    return {
+        type: ADD_QUESTION,
+        question
+    }
+}
+
+export function handleAddQuestion(optionOneText, optionTwoText) {
+    return function(dispatch, getState) {
+        const { authedUser } = getState();
+        return saveQuestion({
+            optionOneText,
+            optionTwoText,
+            author: authedUser,
+        }).then(function(question) { 
+            dispatch(addQuestion(question));
+        });
+      };
+}
 
 export function getQuestions(questions) {
     return {

@@ -9,3 +9,11 @@ export function getInitialData() {
     questions
  }));
 }
+
+export function saveQuestion(info) {
+    return _saveQuestion(info)
+}
+
+export function saveQuestionAnswer(info) {
+    return _saveQuestionAnswer(info)
+}
