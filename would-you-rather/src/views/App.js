@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import {handleInitialData} from '../actions/shared';
 import './App.css';
 
@@ -16,11 +17,20 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        {this.props.loading === true
-          ? null
-          : <AddQuestion/>}
-      </div>
+      <Router>
+        <div>
+          {this.props.loading === true
+            ? null
+            : <div>
+                <Route path='/' exact component={Login} />
+                <Route path='/home' exact component={HomePage} />
+                <Route path='/leadership' exact component={Leadership} />
+                <Route path='/question/:id' component={QuestionDetails} />
+                <Route path='/add' component={AddQuestion} />
+              </div>}
+        </div>
+      </Router>
+      
     );
   }
   

@@ -43,4 +43,4 @@ function mapStateToProps ({ authedUser, questions }, {currentList}) {
   }
 }
 
-export default connect(mapStateToProps)(QuestionList) 
+export default connect(mapStateToProps)(QuestionList)

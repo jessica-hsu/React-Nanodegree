@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Card from 'react-bootstrap/Card'
+import { Link, withRouter } from 'react-router-dom'
 
 class Question extends Component {
   render() {
@@ -8,12 +9,14 @@ class Question extends Component {
     const {question} = this.props;
    
     return (
-      <Card style={{ width: '18rem' }}>
-        <Card.Body>
-          <Card.Title>Would You Rather ...</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">{question.optionOne.text}</Card.Subtitle>
-        </Card.Body>
-      </Card>
+      <Link to={`/question/${question.id}`}>
+        <Card style={{ width: '18rem' }}>
+          <Card.Body>
+            <Card.Title>Would You Rather ...</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">{question.optionOne.text}</Card.Subtitle>
+          </Card.Body>
+        </Card>
+      </Link>
     )
   }
 }
@@ -28,4 +31,4 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
   }
 }
 
-export default connect(mapStateToProps)(Question) 
+export default withRouter(connect(mapStateToProps)(Question)) 

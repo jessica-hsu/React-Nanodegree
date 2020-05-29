@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { connect } from 'react-redux'
 import MyButtons from '../components/Button'
@@ -74,10 +73,9 @@ class Details extends Component {
   }
 }
 
-function mapStateToProps ({authedUser, users, questions }, {questionId}) {
-    console.log(questionId);
-    
-    const question = questions[questionId];
+function mapStateToProps ({authedUser, users, questions }, questionId) {
+    const id = questionId.questionId;
+    const question = questions[id];
     console.log(question);
     // determine if question has been answered
     const votes1 = question.optionOne.votes;

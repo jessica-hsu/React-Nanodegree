@@ -9,7 +9,7 @@ import Details from '../components/Details';
 
 class QuestionDetails extends Component {
   render() {
-    const {unanswered, answered} = this.props;
+    const {id} = this.props;
     return (
       <Container fluid>
         <Row>
@@ -20,7 +20,7 @@ class QuestionDetails extends Component {
           <Col sm={10}>
             <h3>Question Details</h3>
             <hr/>
-            <Details questionId={unanswered}/>
+            <Details questionId={id}/>
           </Col>
         </Row>
       </Container>
@@ -28,17 +28,14 @@ class QuestionDetails extends Component {
   }
 }
 
-function mapStateToProps ({authedUser, users, questions }) {
-    // test question id that tyler did not answer yet
-    const uId = '6ni6ok3ym7mf1p33lnez';
-    // answered question
-    const aId = 'xj352vofupe1dqz9emx13r';
+function mapStateToProps ({authedUser, users, questions }, props) {
   
-    return {
-        userInfo: users[authedUser],
-        answered: aId,
-        unanswered: uId
-    }
+  const {id} = props.match.params;
+  console.log(id);
+  
+  return {
+    id
+  }
 }
 
 export default connect(mapStateToProps)(QuestionDetails) 
