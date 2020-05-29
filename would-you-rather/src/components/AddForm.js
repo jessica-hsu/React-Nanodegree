@@ -5,6 +5,7 @@ import {handleAddQuestion} from '../actions/questions';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { Redirect } from 'react-router-dom'
 
 class AddForm extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class AddForm extends Component {
 
   state = {
     optionOneValue: "",
-    optionTwoValue: ""
+    optionTwoValue: "",
+    redirectToHome: false
   }
 
   handleOnChangeOne(event) {
@@ -37,12 +39,19 @@ class AddForm extends Component {
 
     this.setState({
       optionOneValue: "",
-      optionTwoValue: ""
+      optionTwoValue: "",
+      redirectToHome: true
     });
     
   }
 
   render() {
+
+    // go back to homepage after submitting new question
+    if (this.state.redirectToHome === true) {
+      return <Redirect to='/home'/>
+    }
+
     return (
         <Form onSubmit={this.handleSubmit}>
             <Form.Group as={Row} controlId="optionOne">

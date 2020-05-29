@@ -49,26 +49,6 @@ class Details extends Component {
                 </Form>
             </Card>
         </div>
-
-        /*<div style={{ width: '18rem' }}>
-            <Card>
-                <Card.Header>{authorInfo.name} asks ...</Card.Header>
-                <Card.Img src={authorInfo.avatarURL}/>
-                <Card.Body>
-                    <Card.Title>Would You Rather ... </Card.Title>
-                    <div style={{padding: "1rem", backgroundColor: question.votedFor === 'optionOne' ? "#99d6f2" : "transparent"}}>
-                        <Card.Text>Option 1: {question.optionOneText}</Card.Text>
-                        <Card.Subtitle className="mb-2 text-muted">{question.optionOneTotal} out of votes {question.totalVotes}</Card.Subtitle>
-                        <Card.Subtitle className="mb-2 text-muted">Percent: {question.optionOnePercent}%</Card.Subtitle>
-                    </div>
-                    <div style={{padding: "1rem", backgroundColor: question.votedFor === 'optionTwo' ? "#99d6f2" : "transparent"}}>
-                        <Card.Text>Option 2: {question.optionTwoText}</Card.Text>
-                        <Card.Subtitle className="mb-2 text-muted">{question.optionTwoTotal} out of votes {question.totalVotes}</Card.Subtitle>
-                        <Card.Subtitle className="mb-2 text-muted">Percent: {question.optionTwoPercent}%</Card.Subtitle>
-                    </div>
-                </Card.Body>
-            </Card>
-        </div>*/
     )
   }
 }
