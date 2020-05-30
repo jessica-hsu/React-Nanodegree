@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import {handleInitialData} from '../actions/shared';
 import './App.css';
-
+import {setAuthedUser} from '../actions/authUser';
 
 import HomePage from './HomePage';
 import Login from './Login';
@@ -14,6 +14,7 @@ import QuestionDetails from './QuestionDetails';
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData());
+    this.props.dispatch(setAuthedUser(""));
   }
   render() {
     return (
