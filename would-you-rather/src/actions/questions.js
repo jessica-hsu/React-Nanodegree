@@ -1,6 +1,6 @@
 // action creator for getting questions
 import { saveQuestion, saveQuestionAnswer} from '../utils/api';
-import { addQuestionToUser } from '../actions/users';
+import { addQuestionToUser, addAnswerToUser } from '../actions/users';
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
 export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER';
@@ -56,7 +56,7 @@ export function handleSaveQuestionAnswer(qid, answer) {
             answer
         }).then(function() {
             dispatch(saveAnswer(authedUser, qid, answer));
-            //dispatch(addQuestionToUser(question));
+            dispatch(addAnswerToUser(authedUser, qid, answer));
         });
       };
 }

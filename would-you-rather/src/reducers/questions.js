@@ -11,8 +11,8 @@ export default function questions(state = {}, action) {
                 [question.id]: question
             }
         case SAVE_QUESTION_ANSWER:
-            console.log(state);
-            console.log(action);
+            //console.log(state);
+            //console.log(action);
             let obj = {
                 ...state,
                 [action.qId] : {
