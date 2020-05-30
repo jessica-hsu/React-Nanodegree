@@ -5,17 +5,22 @@ import { Link, withRouter } from 'react-router-dom'
 
 class NavBar extends Component {
   render() {
-    const {displayName, authedUser} = this.props;
+    const {displayName} = this.props;
     return (
         <Nav defaultActiveKey="/home" className="flex-column">
+          { displayName ?
+          <div>
             <Nav>Hello, {displayName}</Nav>
             <Link to="/home"><Nav>Home</Nav></Link>
             <Link to="/add"><Nav>Add Question</Nav></Link>
             <Link to="/leadership"><Nav>Leadership Board</Nav></Link>
-            {
-              authedUser ? 
-              <Link to="/"><Nav>Logout</Nav></Link> : ''
-            }
+            <Link to="/"><Nav>Logout</Nav></Link>
+          </div>
+          :
+          <div>
+            <Link to="/"><Nav>Login</Nav></Link>
+          </div>
+          }
         </Nav>
     )
   }
@@ -23,10 +28,10 @@ class NavBar extends Component {
 
 function mapStateToProps ({authedUser, users}) {
   console.log('NAVBAR', authedUser);
-  let displayName = "Stranger";
-  if (authedUser) {
+  let displayName = null;
+  /* if (authedUser) {
     displayName = users[authedUser].name;
-  }
+  } */
   console.log('NAVBAR', users);
   return {
     displayName,
