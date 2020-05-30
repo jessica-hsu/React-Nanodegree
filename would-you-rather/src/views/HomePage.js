@@ -28,6 +28,7 @@ class HomePage extends Component {
 
   render() {
     console.log('KEYWORD: ', this.state.btnType);
+    console.log('questions', this.props.questionsIds);
     return (
       <Container fluid>
         <Row>

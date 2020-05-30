@@ -17,11 +17,17 @@ class QuestionList extends Component {
 }
 
 function mapStateToProps ({ authedUser, questions }, {currentList}) {
-  console.log('currentList', currentList);
+  console.log('currentList', questions);
   const answered = [];
   const unanswered = [];
+  
+  // sort question IDs by timestamp
+  const allQuestions = Object.keys(questions)
+  .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+  console.log(allQuestions);
+
   // sort into answered and unanswered
-  Object.keys(questions).map((id) => {
+  allQuestions.map((id) => {
     const votes1 = questions[id].optionOne.votes;
     const votes2 = questions[id].optionTwo.votes;
     if (votes1.indexOf(authedUser) > -1 || votes2.indexOf(authedUser) > -1) {
@@ -30,7 +36,6 @@ function mapStateToProps ({ authedUser, questions }, {currentList}) {
       unanswered.push(id);
     }
   });
-
   // determine which list to display when user toggle between answered and unanswered
   let currentIds = unanswered;
   if (currentList === 'homepage-answered') {
