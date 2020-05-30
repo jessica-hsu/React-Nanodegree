@@ -2,8 +2,20 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Nav from 'react-bootstrap/Nav'
 import { Link, withRouter } from 'react-router-dom'
+import {setAuthedUser} from '../actions/authUser';
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    console.log('LOGOUT NOW');
+    this.props.dispatch(setAuthedUser(""));
+  }
+
   render() {
     const {displayName} = this.props;
     return (
@@ -14,7 +26,7 @@ class NavBar extends Component {
             <Link to="/home"><Nav>Home</Nav></Link>
             <Link to="/add"><Nav>Add Question</Nav></Link>
             <Link to="/leadership"><Nav>Leadership Board</Nav></Link>
-            <Link to="/"><Nav>Logout</Nav></Link>
+            <Link to="/" onClick={this.handleClick}><Nav>Logout</Nav></Link>
           </div>
           :
           <div>
