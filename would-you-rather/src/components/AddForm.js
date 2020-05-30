@@ -14,7 +14,6 @@ class AddForm extends Component {
     this.handleOnChangeOne = this.handleOnChangeOne.bind(this);
     this.handleOnChangeTwo = this.handleOnChangeTwo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   state = {
@@ -34,7 +33,6 @@ class AddForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { optionOneValue, optionTwoValue } = this.state;
-    console.log(optionOneValue); console.log(optionTwoValue);
     this.props.dispatch(handleAddQuestion(optionOneValue, optionTwoValue));
 
     this.setState({
@@ -78,6 +76,5 @@ class AddForm extends Component {
     )
   }
 }
-
 
 export default connect()(AddForm) 

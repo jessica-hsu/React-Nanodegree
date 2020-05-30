@@ -15,5 +15,4 @@ class Title extends Component {
   }
 }
 
-
 export default Title

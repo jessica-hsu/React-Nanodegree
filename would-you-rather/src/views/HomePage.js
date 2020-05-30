@@ -4,7 +4,6 @@ import NavBar from '../components/NavBar';
 import Title from '../components/Title';
 import QuestionList from '../components/QuestionList'
 import MyButtons from '../components/Button'
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -19,16 +18,12 @@ class HomePage extends Component {
     btnType:'homepage-default'
   }
 
-
   toggleQuestionList(keyword) {
     console.log(keyword);
     this.setState({btnType: keyword});
-    console.log('keyword is now: ', this.state.btnType);
   }
 
   render() {
-    console.log('KEYWORD: ', this.state.btnType);
-    console.log('questions', this.props.questionsIds);
     return (
       <Container fluid>
         <Row>

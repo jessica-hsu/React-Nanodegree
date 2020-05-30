@@ -23,7 +23,6 @@ class Login extends Component {
   }
 
   handleLogin() {
-    console.log('LOGIN NOW');
     if (this.state.loginUser) {
       console.log(this.state.loginUser);
       this.props.dispatch(setAuthedUser(this.state.loginUser));
@@ -34,7 +33,6 @@ class Login extends Component {
   }
 
   handleUserChange(event) {
-    console.log("SELECTED: ", event.target.value);
     this.setState({loginUser: event.target.value, showLoginError: false});
   }
 
@@ -77,8 +75,6 @@ class Login extends Component {
 }
 
 function mapStateToProps ({authedUser, users,}) {
-   console.log('LOGIN', authedUser);
-   console.log('LOGIN', users);
     return {
         authedUser,
         users

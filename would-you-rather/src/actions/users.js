@@ -11,7 +11,6 @@ export function getUsers(users) {
 }
 
 export function addQuestionToUser(question) {
-    //console.log(question);
     const author = question.author;
     const qId = question.id;
     return {
@@ -22,8 +21,6 @@ export function addQuestionToUser(question) {
 }
 
 export function addAnswerToUser(authedUser, qId, answer) {
-    console.log('QID', qId);
-    console.log('ANS', answer);
     return {
         type: ADD_ANSWER_TO_USER,
         authedUser,

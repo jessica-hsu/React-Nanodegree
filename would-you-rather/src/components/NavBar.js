@@ -12,7 +12,6 @@ class NavBar extends Component {
   }
 
   handleClick() {
-    console.log('LOGOUT NOW');
     this.props.dispatch(setAuthedUser(""));
   }
 
@@ -39,12 +38,10 @@ class NavBar extends Component {
 }
 
 function mapStateToProps ({authedUser, users}) {
-  console.log('NAVBAR', authedUser);
   let displayName = null;
   if (authedUser !== "") {
     displayName = users[authedUser].name;
   }
-  console.log('NAVBAR', users);
   return {
     displayName,
     authedUser,

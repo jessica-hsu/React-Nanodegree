@@ -17,14 +17,12 @@ class QuestionList extends Component {
 }
 
 function mapStateToProps ({ authedUser, questions }, {currentList}) {
-  console.log('currentList', questions);
   const answered = [];
   const unanswered = [];
   
   // sort question IDs by timestamp
   const allQuestions = Object.keys(questions)
   .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
-  console.log(allQuestions);
 
   // sort into answered and unanswered
   allQuestions.map((id) => {
@@ -42,7 +40,6 @@ function mapStateToProps ({ authedUser, questions }, {currentList}) {
     currentIds = answered;
   }
 
-  console.log(currentIds);
   return {
     questionsIds: currentIds
   }

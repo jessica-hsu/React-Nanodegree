@@ -58,9 +58,7 @@ class QuestionDetails extends Component {
 }
 
 function mapStateToProps ({authedUser, questions }, props) {
-  
   const {id} = props.match.params;
-  console.log(id);
   let questionExists = false;
   if (questions[id]) {
     questionExists = true;
@@ -73,4 +71,4 @@ function mapStateToProps ({authedUser, questions }, props) {
   }
 }
 
-export default connect(mapStateToProps)(QuestionDetails) 
+export default connect(mapStateToProps)(QuestionDetails)

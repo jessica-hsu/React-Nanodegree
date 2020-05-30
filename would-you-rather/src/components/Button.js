@@ -33,12 +33,10 @@ class MyButtons extends Component {
             <Button variant="primary" onClick={handleLogin}>{text}</Button>
         )
     }
-    
   }
 }
 
 function mapStateToProps ({authedUser, users, questions}, { buttonType }) {
-    console.log('hello', buttonType);
     return {
       authedUser,
       questions,

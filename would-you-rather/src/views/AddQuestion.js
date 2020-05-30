@@ -3,13 +3,11 @@ import { connect } from 'react-redux'
 import NavBar from '../components/NavBar';
 import Title from '../components/Title';
 import AddForm from '../components/AddForm'
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 class AddQuestion extends Component {
-
   render() {
     return (
       <Container fluid>

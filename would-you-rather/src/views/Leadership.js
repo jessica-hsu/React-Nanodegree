@@ -57,7 +57,6 @@ function mapStateToProps ({authedUser, users }) {
     });
     // sorting it by final score, descending
     scoreBoard = scoreBoard.sort((u1, u2) => u2.finalScore - u1.finalScore);
-    console.log(scoreBoard);
     return {
       authedUser,
       scoreBoard: scoreBoard

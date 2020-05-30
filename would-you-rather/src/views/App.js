@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import {handleInitialData} from '../actions/shared';
 import './App.css';
 import {setAuthedUser} from '../actions/authUser';
-
 import HomePage from './HomePage';
 import Login from './Login';
 import AddQuestion from './AddQuestion';

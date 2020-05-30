@@ -13,13 +13,13 @@ class Details extends Component {
     this.handleSelectOptionOne = this.handleSelectOptionOne.bind(this);
     this.handleSelectOptionTwo = this.handleSelectOptionTwo.bind(this);
   }
+
   state = {
     answer: "optionOne"
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.answer);
     this.props.dispatch(handleSaveQuestionAnswer(this.props.question.id, this.state.answer));
   }
 
@@ -81,7 +81,6 @@ class Details extends Component {
 function mapStateToProps ({authedUser, users, questions }, questionId) {
     const id = questionId.questionId;
     const question = questions[id];
-    console.log(question);
     // determine if question has been answered
     const votes1 = question.optionOne.votes;
     const votes2 = question.optionTwo.votes;
@@ -108,7 +107,6 @@ function mapStateToProps ({authedUser, users, questions }, questionId) {
     
     const authorId = question.author;
     const authorInfo = users[authorId];
-    console.log(authorInfo);
     const questionInfo = {
         id: id,
         status: status,
@@ -122,7 +120,6 @@ function mapStateToProps ({authedUser, users, questions }, questionId) {
         optionTwoTotal: optionTwoTotal,
         totalVotes: totalVotes
     };
-    console.log(questionInfo);
     return {
         question: questionInfo,
         authorInfo
