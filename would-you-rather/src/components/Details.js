@@ -20,7 +20,7 @@ class Details extends Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state.answer);
-    //this.props.dispatch(handleSaveQuestionAnswer());
+    this.props.dispatch(handleSaveQuestionAnswer(this.props.question.id, this.state.answer));
   }
 
   handleSelectOptionOne() {
@@ -110,6 +110,7 @@ function mapStateToProps ({authedUser, users, questions }, questionId) {
     const authorInfo = users[authorId];
     console.log(authorInfo);
     const questionInfo = {
+        id: id,
         status: status,
         author: question.author,
         optionOneText: question.optionOne.text,

@@ -34,6 +34,9 @@ export function getQuestions(questions) {
 }
 
 function saveAnswer(authedUser, qId, answer) {
+    console.log('SAVE ANSWER', authedUser);
+    console.log('SAVE ANSWER', qId);
+    console.log('SAVE ANSWER', answer);
     return {
         type: SAVE_QUESTION_ANSWER,
         authedUser,
@@ -43,14 +46,16 @@ function saveAnswer(authedUser, qId, answer) {
 }
 
 export function handleSaveQuestionAnswer(qid, answer) {
+    console.log('ACTION', qid);
+    console.log('ANSWER', answer);
     return function(dispatch, getState) {
         const { authedUser } = getState();
         return saveQuestionAnswer({
             authedUser,
             qid,
             answer
-        }).then(function(user, qId, ans) {
-            dispatch(saveAnswer(user, qId, ans));
+        }).then(function() {
+            dispatch(saveAnswer(authedUser, qid, answer));
             //dispatch(addQuestionToUser(question));
         });
       };

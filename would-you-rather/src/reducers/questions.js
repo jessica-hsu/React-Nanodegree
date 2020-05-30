@@ -13,9 +13,29 @@ export default function questions(state = {}, action) {
         case SAVE_QUESTION_ANSWER:
             console.log(state);
             console.log(action);
-            return {
-                ...state
+            let obj = {
+                ...state,
+                [action.qId] : {
+                    ...state[action.qId],
+                    optionOne: {
+                        text: state[action.qId].optionOne.text,
+                        votes: state[action.qId].optionOne.votes.concat(action.authedUser)
+                    }
+                }
             }
+            if (action.answer === "optionTwo") {
+                obj = {
+                    ...state,
+                    [action.qId] : {
+                        ...state[action.qId],
+                        optionTwo: {
+                            text: state[action.qId].optionTwo.text,
+                            votes: state[action.qId].optionTwo.votes.concat(action.authedUser)
+                        }                    
+                    }
+                }
+            } 
+            return obj;
         default:
             return state;
     }
