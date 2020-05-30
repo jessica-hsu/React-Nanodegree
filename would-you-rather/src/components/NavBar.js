@@ -5,19 +5,34 @@ import { Link, withRouter } from 'react-router-dom'
 
 class NavBar extends Component {
   render() {
-
-    const {question} = this.props;
-   
+    const {displayName, authedUser} = this.props;
     return (
         <Nav defaultActiveKey="/home" className="flex-column">
-            <Nav>Hello Tyler</Nav>
+            <Nav>Hello, {displayName}</Nav>
             <Link to="/home"><Nav>Home</Nav></Link>
             <Link to="/add"><Nav>Add Question</Nav></Link>
             <Link to="/leadership"><Nav>Leadership Board</Nav></Link>
-            <Link to="/"><Nav>Logout</Nav></Link>
+            {
+              authedUser ? 
+              <Link to="/"><Nav>Logout</Nav></Link> : ''
+            }
         </Nav>
     )
   }
 }
 
-export default withRouter(connect()(NavBar)) 
+function mapStateToProps ({authedUser, users}) {
+  console.log('NAVBAR', authedUser);
+  let displayName = "Stranger";
+  if (authedUser) {
+    displayName = users[authedUser].name;
+  }
+  console.log('NAVBAR', users);
+  return {
+    displayName,
+    authedUser,
+    users
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(NavBar)) 
