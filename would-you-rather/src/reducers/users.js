@@ -5,8 +5,8 @@ export default function questions(state = {}, action) {
         case GET_USERS:
             return {...state, ...action.users};
         case ADD_QUESTION_TO_USER:
-            console.log(action);
-            console.log(state);
+            //console.log(action);
+            //console.log(state);
             return {
                 ...state,
                 [action.author]: {

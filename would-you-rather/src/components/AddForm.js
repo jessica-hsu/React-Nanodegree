@@ -42,7 +42,6 @@ class AddForm extends Component {
       optionTwoValue: "",
       redirectToHome: true
     });
-    
   }
 
   render() {

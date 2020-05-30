@@ -10,7 +10,7 @@ export function getUsers(users) {
 }
 
 export function addQuestionToUser(question) {
-    console.log(question);
+    //console.log(question);
     const author = question.author;
     const qId = question.id;
     return {

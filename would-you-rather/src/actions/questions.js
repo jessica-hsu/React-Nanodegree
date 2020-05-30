@@ -32,3 +32,26 @@ export function getQuestions(questions) {
         questions
     }
 }
+
+function saveAnswer(authedUser, qId, answer) {
+    return {
+        type: SAVE_QUESTION_ANSWER,
+        authedUser,
+        qId,
+        answer
+    }
+}
+
+export function handleSaveQuestionAnswer(qid, answer) {
+    return function(dispatch, getState) {
+        const { authedUser } = getState();
+        return saveQuestionAnswer({
+            authedUser,
+            qid,
+            answer
+        }).then(function(user, qId, ans) {
+            dispatch(saveAnswer(user, qId, ans));
+            //dispatch(addQuestionToUser(question));
+        });
+      };
+}

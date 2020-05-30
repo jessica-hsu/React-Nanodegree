@@ -4,8 +4,33 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { connect } from 'react-redux'
 import MyButtons from '../components/Button'
+import {handleSaveQuestionAnswer} from '../actions/questions';
 
 class Details extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSelectOptionOne = this.handleSelectOptionOne.bind(this);
+    this.handleSelectOptionTwo = this.handleSelectOptionTwo.bind(this);
+  }
+  state = {
+    answer: "optionOne"
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.state.answer);
+    //this.props.dispatch(handleSaveQuestionAnswer());
+  }
+
+  handleSelectOptionOne() {
+    this.setState({answer: "optionOne"});
+  }
+
+  handleSelectOptionTwo() {
+    this.setState({answer: "optionTwo"});
+  }
+
   render() {
 
     const {question, authorInfo} = this.props;
@@ -13,7 +38,7 @@ class Details extends Component {
     return (
         <div style={{ width: '18rem' }}>
             <Card>
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
                 <Card.Header>{authorInfo.name} asks ...</Card.Header>
                 <Card.Img src={authorInfo.avatarURL}/>
                 <Card.Body>
@@ -22,10 +47,10 @@ class Details extends Component {
                         question.status === "unanswered" ?
                     <div>
                         <Form.Group as={Row}>
-                            <Form.Check custom type="radio" id="optionOne" name="options" label={question.optionOneText}/>
+                            <Form.Check custom type="radio" id="optionOne" name="options" label={question.optionOneText} onChange={this.handleSelectOptionOne} checked={this.state.answer === "optionOne"}/>
                         </Form.Group>
                         <Form.Group as={Row}>
-                            <Form.Check custom type="radio" id="optionTwo" name="options" label={question.optionTwoText}/>
+                            <Form.Check custom type="radio" id="optionTwo" name="options" label={question.optionTwoText} onChange={this.handleSelectOptionTwo} checked={this.state.answer === "optionTwo"}/>
                         </Form.Group>
                     </div> : 
                     <div>
