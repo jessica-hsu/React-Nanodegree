@@ -22,7 +22,7 @@ class App extends Component {
           {this.props.loading === true
             ? null
             : <div>
-                <Route path='/' exact component={Login} />
+                <Route path='/' exact component={Login}/>
                 <Route path='/home' exact component={HomePage} />
                 <Route path='/leadership' exact component={Leadership} />
                 <Route path='/question/:id' component={QuestionDetails} />
@@ -38,6 +38,7 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser }) {
   return {
+    authedUser,
     loading: authedUser === null
   }
 }

@@ -9,7 +9,7 @@ import Details from '../components/Details';
 
 class QuestionDetails extends Component {
   render() {
-    const {id, questionExists} = this.props;
+    const {id, questionExists, authedUser} = this.props;
     // if question exists, show it. if not, show 404 Not Found
     if (questionExists) {
       return (
@@ -22,7 +22,12 @@ class QuestionDetails extends Component {
             <Col sm={10}>
               <h3>Question Details</h3>
               <hr/>
-              <Details questionId={id}/>
+              {
+                authedUser === "" ?
+                <div><h4>Please login before viewing question details.</h4></div>
+                :
+                <div><Details questionId={id}/></div>
+              }
             </Col>
           </Row>
         </Container>
@@ -38,7 +43,12 @@ class QuestionDetails extends Component {
             <Col sm={10}>
               <h3>Question Details</h3>
               <hr/>
-              <h4>404 QUESTION NOT FOUND</h4>
+              {
+                authedUser === "" ?
+                <div><h4>Please login before question details.</h4></div>
+                :
+                <h4>404 QUESTION NOT FOUND</h4>
+              }
             </Col>
           </Row>
         </Container>
@@ -47,7 +57,7 @@ class QuestionDetails extends Component {
   }
 }
 
-function mapStateToProps ({authedUser, users, questions }, props) {
+function mapStateToProps ({authedUser, questions }, props) {
   
   const {id} = props.match.params;
   console.log(id);
@@ -57,6 +67,7 @@ function mapStateToProps ({authedUser, users, questions }, props) {
   }
   
   return {
+    authedUser,
     id,
     questionExists
   }

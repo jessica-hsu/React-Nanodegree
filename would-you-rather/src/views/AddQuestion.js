@@ -21,8 +21,15 @@ class AddQuestion extends Component {
           <Col sm={10}>
             <h3>Add New Question</h3>
             <hr/>
-            <h5>Would You Rather ... </h5>
-            <AddForm/>
+            {
+              this.props.authedUser === "" ?
+              <div><h4>Please login before adding new questions.</h4></div>
+              :
+              <div>
+                <h5>Would You Rather ... </h5>
+                <AddForm/>
+              </div>
+            }
           </Col>
         </Row>
       </Container>
@@ -30,4 +37,9 @@ class AddQuestion extends Component {
   }
 }
 
-export default connect()(AddQuestion) 
+function mapStateToProps ({authedUser}) {
+  return {
+    authedUser
+  }
+}
+export default connect(mapStateToProps)(AddQuestion) 

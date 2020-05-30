@@ -35,9 +35,11 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps ({authedUser, users, questions}) {
-   
+function mapStateToProps ({authedUser, users,}) {
+   console.log('LOGIN', authedUser);
+   console.log('LOGIN', users);
     return {
+        authedUser,
         users
     }
 }

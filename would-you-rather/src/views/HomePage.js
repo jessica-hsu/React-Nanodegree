@@ -29,7 +29,6 @@ class HomePage extends Component {
   render() {
     console.log('KEYWORD: ', this.state.btnType);
     return (
-      
       <Container fluid>
         <Row>
           <Col sm={12}><Title/></Col>
@@ -37,8 +36,15 @@ class HomePage extends Component {
         <Row>
           <Col sm={2}><NavBar/></Col>
           <Col sm={10}>
-          <MyButtons buttonType={this.state.btnType} toggleQuestionList={this.toggleQuestionList}/>
-            <QuestionList questionsIds={this.props.questionsIds} currentList={this.state.btnType}/>
+            {
+              this.props.authedUser === "" ?
+              <div><h4>Please login before viewing homepage.</h4></div>
+              :
+              <div>
+                <MyButtons buttonType={this.state.btnType} toggleQuestionList={this.toggleQuestionList}/>
+                <QuestionList questionsIds={this.props.questionsIds} currentList={this.state.btnType}/>
+              </div>
+            }
           </Col>
         </Row>
       </Container>
@@ -46,8 +52,9 @@ class HomePage extends Component {
   }
 }
 
-function mapStateToProps ({questions }) {
+function mapStateToProps ({authedUser, questions }) {
   return {
+    authedUser,
     questionsIds: Object.keys(questions)
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
   }
