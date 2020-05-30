@@ -13,15 +13,15 @@ class MyButtons extends Component {
     if (buttonType === 'homepage-default') {
         return (
             <ButtonGroup aria-label="homepage-default">
-                <Button variant="primary" onClick={toggleQuestionList.bind(this,'homepage-default')}>Answered</Button>
-                <Button variant="outline-primary" onClick={toggleQuestionList.bind(this,'homepage-unanswered')}>Unanswered</Button>
+                <Button variant="primary" onClick={toggleQuestionList.bind(this,'homepage-default')}>Unanswered</Button>
+                <Button variant="outline-primary" onClick={toggleQuestionList.bind(this,'homepage-answered')}>Answered</Button>
             </ButtonGroup>
         )
-    } else if (buttonType === 'homepage-unanswered') {
+    } else if (buttonType === 'homepage-answered') {
         return (
-            <ButtonGroup aria-label="homepage-unanswered">
-                <Button variant="outline-primary" onClick={toggleQuestionList.bind(this,'homepage-default')}>Answered</Button>
-                <Button variant="primary" onClick={toggleQuestionList.bind(this,'homepage-unanswered')}>Unanswered</Button>
+            <ButtonGroup aria-label="homepage-default">
+                <Button variant="outline-primary" onClick={toggleQuestionList.bind(this,'homepage-default')}>Unanswered</Button>
+                <Button variant="primary" onClick={toggleQuestionList.bind(this,'homepage-answered')}>Answered</Button>
             </ButtonGroup>
         )
     } else  if (buttonType === 'submit') {

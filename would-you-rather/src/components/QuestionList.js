@@ -32,9 +32,9 @@ function mapStateToProps ({ authedUser, questions }, {currentList}) {
   });
 
   // determine which list to display when user toggle between answered and unanswered
-  let currentIds = answered;
-  if (currentList === 'homepage-unanswered') {
-    currentIds = unanswered;
+  let currentIds = unanswered;
+  if (currentList === 'homepage-answered') {
+    currentIds = answered;
   }
 
   console.log(currentIds);
