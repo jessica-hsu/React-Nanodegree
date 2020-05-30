@@ -8,3 +8,14 @@ export function getUsers(users) {
         users
     }
 }
+
+export function addQuestionToUser(question) {
+    console.log(question);
+    const author = question.author;
+    const qId = question.id;
+    return {
+        type: ADD_QUESTION_TO_USER,
+        author,
+        qId
+    }
+}

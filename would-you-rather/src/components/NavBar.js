@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Nav from 'react-bootstrap/Nav'
+import { Link, withRouter } from 'react-router-dom'
 
 class NavBar extends Component {
   render() {
@@ -9,13 +11,13 @@ class NavBar extends Component {
     return (
         <Nav defaultActiveKey="/home" className="flex-column">
             <Nav>Hello Tyler</Nav>
-            <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/add">Add Question</Nav.Link>
-            <Nav.Link href="/leadership">Leadership Board</Nav.Link>
-            <Nav.Link href="/">Logout</Nav.Link>
+            <Link to="/home"><Nav>Home</Nav></Link>
+            <Link to="/add"><Nav>Add Question</Nav></Link>
+            <Link to="/leadership"><Nav>Leadership Board</Nav></Link>
+            <Link to="/"><Nav>Logout</Nav></Link>
         </Nav>
     )
   }
 }
 
-export default NavBar
+export default withRouter(connect()(NavBar)) 
