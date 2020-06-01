@@ -38,9 +38,12 @@ class Login extends Component {
 
   render() {
     const {users} = this.props;
-
+    console.log(this.props.location.state);
     // if already logged in or successfully logged in, redirect to homepage
-    if (this.state.redirect) {
+    if (this.state.redirect && this.props.location.state) {
+      console.log('REQUESt', this.props.location.state.requestedPath)
+      return <Redirect to={this.props.location.state.requestedPath}/>
+    } else if (this.state.redirect) {
       return <Redirect to='/home'/>
     }
 

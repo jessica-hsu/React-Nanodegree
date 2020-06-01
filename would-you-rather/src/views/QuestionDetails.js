@@ -9,65 +9,30 @@ import Details from '../components/Details';
 
 class QuestionDetails extends Component {
   render() {
-    const {id, questionExists, authedUser} = this.props;
+    const {id} = this.props;
     // if question exists, show it. if not, show 404 Not Found
-    if (questionExists) {
-      return (
-        <Container fluid>
-          <Row>
-            <Col sm={12}><Title/></Col>
-          </Row>
-          <Row>
-            <Col sm={2}><NavBar/></Col>
-            <Col sm={10}>
-              <h3>Question Details</h3>
-              <hr/>
-              {
-                authedUser === "" ?
-                <div><h4>Please login before viewing question details.</h4></div>
-                :
-                <div><Details questionId={id}/></div>
-              }
-            </Col>
-          </Row>
-        </Container>
-      )
-    } else {
-      return (
-        <Container fluid>
-          <Row>
-            <Col sm={12}><Title/></Col>
-          </Row>
-          <Row>
-            <Col sm={2}><NavBar/></Col>
-            <Col sm={10}>
-              <h3>Question Details</h3>
-              <hr/>
-              {
-                authedUser === "" ?
-                <div><h4>Please login before question details.</h4></div>
-                :
-                <h4>404 QUESTION NOT FOUND</h4>
-              }
-            </Col>
-          </Row>
-        </Container>
-      )
-    }
+    return (
+      <Container fluid>
+        <Row>
+          <Col sm={12}><Title/></Col>
+        </Row>
+        <Row>
+          <Col sm={2}><NavBar/></Col>
+          <Col sm={10}>
+            <h3>Question Details</h3>
+            <hr/>
+            <Details questionId={id}/>
+          </Col>
+        </Row>
+      </Container>
+    )
   }
 }
 
-function mapStateToProps ({authedUser, questions }, props) {
-  const {id} = props.match.params;
-  let questionExists = false;
-  if (questions[id]) {
-    questionExists = true;
-  }
-  
+function mapStateToProps ({questions }, props) {
+  const {id} = props.match.params;  
   return {
-    authedUser,
-    id,
-    questionExists
+    id
   }
 }
 

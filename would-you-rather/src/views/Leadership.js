@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 
 class Leadership extends Component {
   render() {
-    const {scoreBoard, authedUser} = this.props;
+    const {scoreBoard} = this.props;
     return (
       <Container fluid>
         <Row>
@@ -21,14 +21,11 @@ class Leadership extends Component {
             <h3>Leadership Board</h3>
             <hr/>
             {
-                authedUser === "" ?
-                <div><h4>Please login before viewing leadership board.</h4></div>
-                :
-                scoreBoard.map((user) => 
+              scoreBoard.map((user) => 
                     <div key={user.id} style={{marginTop: "1rem"}}>
                         <Leader user={user}/>
                     </div>
-                )
+              ) 
             }
           </Col>
         </Row>
@@ -37,7 +34,7 @@ class Leadership extends Component {
   }
 }
 
-function mapStateToProps ({authedUser, users }) {
+function mapStateToProps ({users}) {
     let scoreBoard = [];
     // get necessary info for creating leadership board information
     Object.keys(users).map((userId) => {
@@ -58,7 +55,6 @@ function mapStateToProps ({authedUser, users }) {
     // sorting it by final score, descending
     scoreBoard = scoreBoard.sort((u1, u2) => u2.finalScore - u1.finalScore);
     return {
-      authedUser,
       scoreBoard: scoreBoard
     }
 }

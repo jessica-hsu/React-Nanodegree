@@ -32,15 +32,8 @@ class HomePage extends Component {
         <Row>
           <Col sm={2}><NavBar/></Col>
           <Col sm={10}>
-            {
-              this.props.authedUser === "" ?
-              <div><h4>Please login before viewing homepage.</h4></div>
-              :
-              <div>
-                <MyButtons buttonType={this.state.btnType} toggleQuestionList={this.toggleQuestionList}/>
-                <QuestionList questionsIds={this.props.questionsIds} currentList={this.state.btnType}/>
-              </div>
-            }
+            <MyButtons buttonType={this.state.btnType} toggleQuestionList={this.toggleQuestionList}/>
+            <QuestionList questionsIds={this.props.questionsIds} currentList={this.state.btnType}/>
           </Col>
         </Row>
       </Container>
@@ -48,9 +41,8 @@ class HomePage extends Component {
   }
 }
 
-function mapStateToProps ({authedUser, questions }) {
+function mapStateToProps ({questions }) {
   return {
-    authedUser,
     questionsIds: Object.keys(questions)
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
   }
