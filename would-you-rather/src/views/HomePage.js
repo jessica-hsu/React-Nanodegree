@@ -7,6 +7,8 @@ import MyButtons from '../components/Button'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+
 class HomePage extends Component {
 
   constructor(props) {
@@ -24,6 +26,11 @@ class HomePage extends Component {
   }
 
   render() {
+
+    if (this.props.authedUser === "") {
+      return <Redirect to={{pathname: '/', state: { from: '/home'}}} ></Redirect>
+    }
+
     return (
       <Container fluid>
         <Row>
@@ -41,8 +48,9 @@ class HomePage extends Component {
   }
 }
 
-function mapStateToProps ({questions }) {
+function mapStateToProps ({authedUser, questions }) {
   return {
+    authedUser,
     questionsIds: Object.keys(questions)
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
   }

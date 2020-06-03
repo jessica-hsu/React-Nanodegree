@@ -6,10 +6,20 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Details from '../components/Details';
+import { withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 class QuestionDetails extends Component {
   render() {
-    const {id} = this.props;
+    const {id, url} = this.props;
+
+    if (this.props.authedUser === "") {
+      return <Redirect to={{pathname: '/', state: { from: url}}} ></Redirect>
+    }
+    if (this.props.doesNotExist) {
+      return <Redirect to="/notfound"></Redirect>
+    }
+    
     // if question exists, show it. if not, show 404 Not Found
     return (
       <Container fluid>
@@ -29,11 +39,18 @@ class QuestionDetails extends Component {
   }
 }
 
-function mapStateToProps ({questions }, props) {
-  const {id} = props.match.params;  
+function mapStateToProps ({authedUser, questions }, props) {
+  const {id} = props.match.params; 
+  let doesntExist = true;
+  if (questions[id]) {
+    doesntExist = false;
+  }
   return {
-    id
+    id,
+    authedUser,
+    doesNotExist: doesntExist,
+    url: props.match.url
   }
 }
 
-export default connect(mapStateToProps)(QuestionDetails)
+export default withRouter(connect(mapStateToProps)(QuestionDetails))

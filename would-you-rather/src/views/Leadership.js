@@ -6,9 +6,15 @@ import Leader from '../components/Leader';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 class Leadership extends Component {
   render() {
+
+    if (this.props.authedUser === "") {
+      return <Redirect to={{pathname: '/', state: { from: '/leadership'}}} ></Redirect>
+    }
+    
     const {scoreBoard} = this.props;
     return (
       <Container fluid>
@@ -34,7 +40,7 @@ class Leadership extends Component {
   }
 }
 
-function mapStateToProps ({users}) {
+function mapStateToProps ({authedUser, users}) {
     let scoreBoard = [];
     // get necessary info for creating leadership board information
     Object.keys(users).map((userId) => {
@@ -55,6 +61,7 @@ function mapStateToProps ({users}) {
     // sorting it by final score, descending
     scoreBoard = scoreBoard.sort((u1, u2) => u2.finalScore - u1.finalScore);
     return {
+      authedUser,
       scoreBoard: scoreBoard
     }
 }

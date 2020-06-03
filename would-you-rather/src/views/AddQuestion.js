@@ -6,9 +6,15 @@ import AddForm from '../components/AddForm'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 class AddQuestion extends Component {
   render() {
+
+    if (this.props.authedUser === "") {
+      return <Redirect to={{pathname: '/', state: { from: '/add'}}} ></Redirect>
+    }
+
     return (
       <Container fluid>
         <Row>
@@ -28,4 +34,10 @@ class AddQuestion extends Component {
   }
 }
 
-export default connect()(AddQuestion) 
+function mapStateToProps ({authedUser }) {
+  return {
+    authedUser
+  }
+}
+
+export default connect(mapStateToProps)(AddQuestion) 

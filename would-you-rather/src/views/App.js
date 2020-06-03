@@ -18,12 +18,7 @@ class App extends Component {
     this.props.dispatch(setAuthedUser(""));
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-    console.log(this.props);
-  }
-  render() {
-    
+  render() {    
     return (
       <Router>
         <div>
@@ -33,18 +28,11 @@ class App extends Component {
           <div>
             <Switch>
               <Route exact path="/" component={Login}></Route>
-              <Route exact path="/home">
-                {this.props.authedUser ==="" ? <Redirect to={{pathname: '/', state: { requestedPath: '/home' }}}/> : <HomePage/>}
-              </Route>
-              <Route exact path="/leadership">
-                {this.props.authedUser ==="" ? <Redirect to={{pathname: '/', state: { requestedPath: '/leadership' }}}/> : <Leadership/>}
-              </Route>
-              <Route exact path="/question/:id">
-                {this.props.authedUser ==="" ? <Redirect to={{pathname: '/', state: { requestedPath: '/question/:id' }}}/> : <QuestionDetails/>}
-              </Route>
-              <Route exact path="/add">
-                {this.props.authedUser ==="" ? <Redirect to={{pathname: '/', state: { requestedPath: '/add' }}}/> : <AddQuestion/>}
-              </Route>
+              <Route exact path="/home" component={HomePage}></Route>
+              <Route exact path="/leadership" component={Leadership}></Route>
+              <Route path="/question/:id" component={QuestionDetails}></Route>
+              <Route exact path="/add" component={AddQuestion}></Route>
+              <Route exact path="/notfound" component={NotFound}></Route>
               <Route component={NotFound} />
             </Switch>
           </div>

@@ -3,9 +3,13 @@ import { connect } from 'react-redux'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 class NotFound extends Component {
   render() {
+    if (this.props.authedUser === "") {
+      return <Redirect to="/"></Redirect>
+    }
     return (
       <Container fluid>
         <Row>
@@ -20,4 +24,9 @@ class NotFound extends Component {
   }
 }
 
-export default connect()(NotFound) 
+function mapStateToProps ({authedUser}) {
+  return {
+    authedUser
+  }
+}
+export default connect(mapStateToProps)(NotFound) 

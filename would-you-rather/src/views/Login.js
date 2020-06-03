@@ -16,10 +16,18 @@ class Login extends Component {
     this.handleUserChange = this.handleUserChange.bind(this);
   }
 
+  componentDidMount() {
+    console.log(this.props.location.state);
+    if (this.props.location.state) {
+      this.setState({requestedPage: this.props.location.state.from})
+    }
+  }
+
   state = {
     loginUser: null,
     redirect: this.props.authedUser === "" ? false : true,
-    showLoginError: false
+    showLoginError: false,
+    requestedPage: null
   }
 
   handleLogin() {
@@ -38,11 +46,9 @@ class Login extends Component {
 
   render() {
     const {users} = this.props;
-    console.log(this.props.location.state);
     // if already logged in or successfully logged in, redirect to homepage
-    if (this.state.redirect && this.props.location.state) {
-      console.log('REQUESt', this.props.location.state.requestedPath)
-      return <Redirect to={this.props.location.state.requestedPath}/>
+    if (this.state.redirect && this.state.requestedPage) {
+      return <Redirect to={this.state.requestedPage}/>
     } else if (this.state.redirect) {
       return <Redirect to='/home'/>
     }
