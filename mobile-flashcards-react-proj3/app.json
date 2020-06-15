@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "mobile-flashcards-react-proj3",
+    "slug": "snack-2a6079bf-9c9a-4e8f-ac05-de0b2a3394ed",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "description": "Udacity React Nanodegree project 3"
+  }
+}
