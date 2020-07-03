@@ -24,12 +24,17 @@ class AddDeck extends Component {
   }
 
   handleClick() {
-    const { dispatch } = this.props;
-    saveDeckTitle(this.state.name).then(() => {
-      dispatch(addDeck(this.state.name));
-    });
+    if (this.state.name === '') {
+      this.props.navigation.navigate("AddCardError");
+    } else {
+      const { dispatch } = this.props;
+      saveDeckTitle(this.state.name).then(() => {
+        dispatch(addDeck(this.state.name));
+      });
 
-    this.props.navigation.navigate("Home",);
+      this.props.navigation.navigate("DeckDetails", {key: this.state.name});
+    }
+
   }
 
   render() {

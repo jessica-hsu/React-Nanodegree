@@ -32,7 +32,7 @@ class Quiz extends Component {
   handleShowAnswerClick() {
     const current = this.state.showAnswer;
     if (current == "none") {
-      this.setState({showAnswer: "block"});
+      this.setState({showAnswer: "flex"});
     } else {
       this.setState({showAnswer: "none"})
     }

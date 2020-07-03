@@ -30,15 +30,19 @@ class AddCard extends Component {
   }
 
   handleClick() {
-    const { dispatch } = this.props;
-    const card = {
-      question: this.state.question,
-      answer: this.state.answer
-    };
-    addCardToDeck(this.state.title, card).then(() => {
-      dispatch(addCard(this.state.title, card));
-    });
-    this.props.navigation.navigate('DeckDetails');
+    if (this.state.question === '' || this.state.answer === '') {
+      this.props.navigation.navigate("AddCardError");
+    } else {
+      const { dispatch } = this.props;
+      const card = {
+        question: this.state.question,
+        answer: this.state.answer
+      };
+      addCardToDeck(this.state.title, card).then(() => {
+        dispatch(addCard(this.state.title, card));
+      });
+      this.props.navigation.navigate('DeckDetails');
+    }
   }
 
   render() {

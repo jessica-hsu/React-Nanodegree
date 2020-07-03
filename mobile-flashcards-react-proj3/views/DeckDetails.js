@@ -48,9 +48,17 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(decks, props) {
     const key = props.navigation.state.params.key;
+    let title, questions;
+    if (!decks[key]) {
+      title = key;
+      questions = [];
+    } else {
+      title = decks[key].title;
+      questions = decks[key].questions;
+    }
     return {
-        title: decks[key].title,
-        questions: decks[key].questions,
+        title,
+        questions
     }
 }
 

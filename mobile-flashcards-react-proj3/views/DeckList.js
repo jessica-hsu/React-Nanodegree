@@ -49,6 +49,7 @@ class DeckList extends Component {
       <View style={styles.container}>
         {Object.keys(decks).map((key) => (
           <TouchableOpacity
+            key={key}
             style={styles.deck}
             onPress={() => this.handleDeckClick(key)}>
             <Deck

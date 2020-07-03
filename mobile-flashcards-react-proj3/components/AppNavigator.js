@@ -5,6 +5,7 @@ import Quiz from "../views/Quiz";
 import DeckDetails from "../views/DeckDetails";
 import AddCard from "../views/AddCard";
 import NoQuestions from "../views/NoQuestions";
+import AddCardError from "../views/AddCardError";
 
 const AppNavigator = createStackNavigator(
   {
@@ -62,6 +63,16 @@ const AppNavigator = createStackNavigator(
       screen: NoQuestions, 
       navigationOptions: {
         title: "Quiz Error",
+        headerTintColor: "white",
+        headerStyle: {
+          backgroundColor: "#6200ee",
+        }
+      }
+    },
+    AddCardError: {
+      screen: AddCardError, 
+      navigationOptions: {
+        title: "Error",
         headerTintColor: "white",
         headerStyle: {
           backgroundColor: "#6200ee",
